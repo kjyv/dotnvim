@@ -30,6 +30,9 @@ return {
     end
   },
 
+  -- enhanced % matching
+  { 'chrisbra/matchit' },
+
   -- easymotion replacement
   {
     'smoka7/hop.nvim',

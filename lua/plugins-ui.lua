@@ -1,13 +1,15 @@
 return {
   -- Colorscheme
   {
-    "NLKNguyen/papercolor-theme",
+    "folke/tokyonight.nvim",
+    --    "NLKNguyen/papercolor-theme",
     config = function()
       -- Explicitly reapply the colorscheme after Lazy has initialized
       vim.api.nvim_create_autocmd("User", {
         pattern = "LazyVimStarted",
         callback = function()
-          vim.cmd("colorscheme PaperColor")
+          -- vim.cmd("colorscheme PaperColor")
+          vim.cmd("colorscheme tokyonight-night")
           -- vim.cmd("colorscheme catppuccin-mocha")
           vim.opt.termguicolors = true
           vim.opt.background = "dark"
@@ -37,13 +39,6 @@ return {
     end,
   },
 
-  -- { "startup-nvim/startup.nvim",
-  --   dependencies = { "nvim-telescope/telescope.nvim", "nvim-lua/plenary.nvim", "nvim-telescope/telescope-file-browser.nvim" },
-  --   config = function()
-  --     require "startup".setup(
-  --           {theme = "startify"})
-  --   end
-  -- },
   {
     'nvimdev/dashboard-nvim',
     event = 'VimEnter',
@@ -56,6 +51,14 @@ return {
           },
           header = require("dashboard-header"),
           shortcut = {
+            {
+              icon = ' ',
+              icon_hl = '@variable',
+              desc = 'Empty buffer',
+              group = 'Label',
+              action = 'enew', -- Opens an empty buffer
+              key = 'e',
+            },
             { desc = '󰊳 Update', group = '@property', action = 'Lazy update', key = 'u' },
             {
               icon = '󰱼 ',
@@ -74,7 +77,7 @@ return {
               key = 'f',
             },
             {
-              desc = '󱈫 checkhealth',
+              desc = '󱈫 Check health',
               group = 'Number',
               action = 'checkhealth',
               key = 'c',
@@ -113,7 +116,7 @@ return {
     keys = {
       { "<leader>t",       "<cmd>Telescope git_files<cr>",                     desc = "Find Files (root dir)" },
       { "<leader><space>", "<cmd>Telescope buffers<cr>",                       desc = "Find Buffers" },
-      { "<leader>f",       "<cmd>Telescope live_grep<cr>",                     desc = "Search Project" },
+      { "<leader>sf",      "<cmd>Telescope live_grep<cr>",                     desc = "Search Project" },
       { "<leader>ss",      "<cmd>Telescope lsp_document_symbols<cr>",          desc = "Search Document Symbols" },
       { "<leader>sw",      "<cmd>Telescope lsp_dynamic_workspace_symbols<cr>", desc = "Search Workspace Symbols" },
     },
@@ -155,4 +158,7 @@ return {
   -- {'hrsh7th/cmp-cmdline'},
   --
   { "jeffkreeftmeijer/vim-numbertoggle" },
+
+
+  -- {"OXY2DEV/markview.nvim"}
 }
