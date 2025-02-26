@@ -2,6 +2,7 @@ return {
   -- allow ib/ab and iq/aq objects to work in any bracket and any quote
   { 'echasnovski/mini.ai', version = '*' },
 
+  -- TODO: tryeyeliner.nvim instead (lua)
   {
     'unblevable/quick-scope',
     config = function()

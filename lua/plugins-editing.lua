@@ -15,6 +15,7 @@ return {
     'hrsh7th/nvim-cmp',
     dependencies = {
       "hrsh7th/cmp-nvim-lsp",
+      "hrsh7th/cmp-buffer",
     },
     config = function()
       local has_words_before = function()
@@ -53,9 +54,11 @@ return {
           ["<c-e>"] = cmp.mapping.abort(),
           ["<CR>"] = cmp.mapping.confirm({ select = true }),
         }),
-        sources = {
-          { name = "nvim_lsp" },
-        }
+        -- Default sources: Use LSP if available, otherwise use buffer completion
+        sources = cmp.config.sources({
+          { name = "nvim_lsp" }, -- LSP-based completion
+          { name = "buffer" },   -- Buffer-based completion
+        })
       })
     end
   },
