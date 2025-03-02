@@ -114,29 +114,50 @@ return {
     version = false,
     dependencies = { "nvim-lua/plenary.nvim" },
     keys = {
-      { "<leader>t",       "<cmd>Telescope git_files<cr>",                     desc = "Find Files (root dir)" },
-      { "<leader><space>", "<cmd>Telescope buffers<cr>",                       desc = "Find Buffers" },
-      { "<leader>sf",      "<cmd>Telescope live_grep<cr>",                     desc = "Search Project" },
-      { "<leader>ss",      "<cmd>Telescope lsp_document_symbols<cr>",          desc = "Search Document Symbols" },
-      { "<leader>sw",      "<cmd>Telescope lsp_dynamic_workspace_symbols<cr>", desc = "Search Workspace Symbols" },
+      { "<leader>t",  "<cmd>Telescope git_files<cr>",                     desc = "Find Files (root dir)" },
+      { "<leader>bb", "<cmd>Telescope buffers<cr>",                       desc = "Find Buffers" },
+      { "<leader>bf", "<cmd>Telescope current_buffer_fuzzy_find<cr>",     desc = "Current Buffer Fuzzy" },
+      { "<leader>f",  "<cmd>Telescope live_grep<cr>",                     desc = "Search Project" },
+      { "<leader>ss", "<cmd>Telescope lsp_document_symbols<cr>",          desc = "Search Document Symbols" },
+      { "<leader>sw", "<cmd>Telescope lsp_dynamic_workspace_symbols<cr>", desc = "Search Workspace Symbols" },
     },
     opts = {
       extensions = {
-        fzf = {
-          fuzzy = true,
-          override_generic_sorter = true,
-          override_file_sorter = true,
-          case_mode = "smart_case"
+        zf = {
+          file = {
+            smart_case = true,
+          }
         }
-      }
-    }
+      },
+    },
+    config = function()
+      -- show file name left most, followed by path
+      local function filenameFirst(_, path)
+        local tail = vim.fs.basename(path)
+        local parent = vim.fs.dirname(path)
+        if parent == "." then
+          return tail
+        end
+        return string.format("%s\t\t%s", tail, parent)
+      end
+
+      require("telescope").setup({
+        pickers = {
+          find_files = {
+            path_display = filenameFirst,
+          },
+          git_files = {
+            path_display = filenameFirst,
+          },
+        },
+      })
+    end
   },
 
   {
-    "nvim-telescope/telescope-fzf-native.nvim",
-    build = "make",
+    'natecraddock/telescope-zf-native.nvim',
     config = function()
-      require('telescope').load_extension('fzf')
+      require('telescope').load_extension('zf-native')
     end
   },
 

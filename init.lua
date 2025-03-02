@@ -47,15 +47,6 @@ require("lazy").setup({
 }
 )
 
-local hop = require('hop')
-local directions = require('hop.hint').HintDirection
-vim.keymap.set('', '<leader>w', function()
-  hop.hint_words({ direction = directions.AFTER_CURSOR, current_line_only = false })
-end, { remap = true })
-vim.keymap.set('', '<leader>b', function()
-  hop.hint_words({ direction = directions.BEFORE_CURSOR, current_line_only = false })
-end, { remap = true })
-
 -- local cmp = require'cmp'
 -- cmp.setup({
 --   completion = {
