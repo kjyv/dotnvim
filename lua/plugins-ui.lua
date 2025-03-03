@@ -9,8 +9,7 @@ return {
         pattern = "LazyVimStarted",
         callback = function()
           -- vim.cmd("colorscheme PaperColor")
-          vim.cmd("colorscheme tokyonight-night")
-          -- vim.cmd("colorscheme catppuccin-mocha")
+          vim.cmd("colorscheme tokyonight-moon")
           vim.opt.termguicolors = true
           vim.opt.background = "dark"
 
