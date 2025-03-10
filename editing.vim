@@ -29,10 +29,10 @@ set formatoptions=croql "tcq
 
 "always use black hole register to delete (cut and paste still as normal)
 "http://vim.wikia.com/wiki/Replace_a_word_with_yanked_text
-
 noremap d "_d
 noremap dd "_dd
 noremap D "_D
+noremap c "_c
 
 " paste without yanking
 vnoremap p "_dP
