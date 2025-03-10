@@ -140,6 +140,7 @@ return {
         return string.format("%s\t\t%s", tail, parent)
       end
 
+      local actions = require("telescope.actions")
       require("telescope").setup({
         pickers = {
           find_files = {
@@ -147,6 +148,13 @@ return {
           },
           git_files = {
             path_display = filenameFirst,
+          },
+        },
+        defaults = {
+          mappings = {
+            i = {
+              ["<esc>"] = actions.close
+            },
           },
         },
       })
